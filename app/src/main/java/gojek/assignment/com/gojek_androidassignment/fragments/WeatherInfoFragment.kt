@@ -11,7 +11,11 @@ import android.view.ViewGroup
 import gojek.assignment.com.gojek_androidassignment.R
 import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
 import android.databinding.DataBindingUtil
+import android.support.v7.widget.LinearLayoutManager
+import gojek.assignment.com.gojek_androidassignment.adapters.ForecastAdapter
 import gojek.assignment.com.gojek_androidassignment.databinding.FragmentWeatherInfoBinding
+import kotlinx.android.synthetic.main.fragment_weather_info.view.*
+import android.support.v7.widget.DividerItemDecoration
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,12 +42,22 @@ class WeatherInfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentWeatherInfoBinding.inflate(inflater, container, false)
-        binding.viewModel=weatherViewModel
+        binding.viewModel = weatherViewModel
+        init()
         return binding.root
     }
 
     private fun init() {
-
+        var list = binding.root.listForecast
+        list.layoutManager = LinearLayoutManager(context!!)
+        var adapter =
+            ForecastAdapter(weatherViewModel.responseModel.value!!.weatherResponseModel!!.forecast.forecastday)
+        val dividerItemDecoration = DividerItemDecoration(
+            list.getContext(),
+            DividerItemDecoration.VERTICAL
+        )
+        list.addItemDecoration(dividerItemDecoration)
+        list.adapter = adapter
     }
 
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+    <data>
+        <variable name="model" type="gojek.assignment.com.gojek_androidassignment.models.ForecastDayModel"/>
+
+    </data>
+<android.support.constraint.ConstraintLayout
+                                             android:layout_width="match_parent"
+                                             android:paddingLeft="16dp"
+                                             android:paddingRight="16dp"
+                                             android:paddingTop="32dp"
+                                             android:paddingBottom="32dp"
+                                             android:layout_height="wrap_content">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:textColor="@color/text_color_main"
+              tools:text="Tuesday"
+              android:textSize="16sp"
+              android:fontFamily="sans-serif"
+              android:id="@+id/textDay"
+              android:text="@{model.date}"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textColor="@color/text_color_main"
+              tools:text="21"
+              android:textSize="16sp"
+              android:fontFamily="sans-serif"
+              app:layout_constraintRight_toRightOf="parent"
+              android:text="@{model.day.avgtemp_c}"
+              android:id="@+id/textTemparature"
+    />
+
+</android.support.constraint.ConstraintLayout>
+
+</layout>
