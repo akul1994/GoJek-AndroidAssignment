@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         weatherViewModel.responseModel.observe(this, Observer<ApiResponse> {
             consumeResponse(it)
         })
-        MainRepository.getInstance(this).makeWeatherForecastRequest(5, "Bangalore")
     }
 
     private fun consumeResponse(response: ApiResponse?) {
@@ -112,8 +111,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun clearAllFragments()
-    {
+    private fun clearAllFragments() {
         for (fragment in supportFragmentManager.fragments) {
             supportFragmentManager.beginTransaction().remove(fragment).commit()
         }
