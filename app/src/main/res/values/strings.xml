@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoJek-AndroidAssignment</string>
+
+    <string name="api_key">3c6481b1e6464ca486f61618190108</string>
 </resources>

@@ -8,7 +8,14 @@ object constants
 
     object UrlConstants
     {
-        const val BASE_URL = "https://api.apixu.com/v1/"
+        const val BASE_URL = "https://api.apixu.com/"
+    }
+
+    enum class Status {
+        LOADING,
+        SUCCESS,
+        ERROR,
+        COMPLETED
     }
 
 }
