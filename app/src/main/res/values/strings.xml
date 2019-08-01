@@ -2,4 +2,7 @@
     <string name="app_name">GoJek-AndroidAssignment</string>
 
     <string name="api_key">3c6481b1e6464ca486f61618190108</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
