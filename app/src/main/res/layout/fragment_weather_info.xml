@@ -39,21 +39,21 @@
 
         />
 
-        <android.support.v7.widget.CardView android:layout_width="match_parent"
-                                            app:cardElevation="8dp"
-                                            android:layout_alignParentBottom="true"
-                                            android:layout_below="@id/textCurrentCity"
-                                            android:layout_marginTop="62dp"
-                                            android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                                           app:cardElevation="8dp"
+                                           android:layout_alignParentBottom="true"
+                                           android:layout_below="@id/textCurrentCity"
+                                           android:layout_marginTop="62dp"
+                                           android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:id="@+id/listForecast"
                     android:layout_height="wrap_content">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
     </RelativeLayout>

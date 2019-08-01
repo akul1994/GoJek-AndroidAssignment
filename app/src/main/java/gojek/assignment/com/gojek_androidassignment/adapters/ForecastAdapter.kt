@@ -1,7 +1,7 @@
 package gojek.assignment.com.gojek_androidassignment.adapters
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import gojek.assignment.com.gojek_androidassignment.R

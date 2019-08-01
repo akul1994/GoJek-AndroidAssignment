@@ -1,6 +1,6 @@
 package gojek.assignment.com.gojek_androidassignment.repository;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.content.Context;
 import gojek.assignment.com.gojek_androidassignment.R;
 import gojek.assignment.com.gojek_androidassignment.models.ApiResponse;

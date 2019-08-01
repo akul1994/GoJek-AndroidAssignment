@@ -1,21 +1,21 @@
 package gojek.assignment.com.gojek_androidassignment.fragments
 
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import gojek.assignment.com.gojek_androidassignment.R
 import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.LinearLayoutManager
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import gojek.assignment.com.gojek_androidassignment.adapters.ForecastAdapter
 import gojek.assignment.com.gojek_androidassignment.databinding.FragmentWeatherInfoBinding
 import kotlinx.android.synthetic.main.fragment_weather_info.view.*
-import android.support.v7.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration
 
 
 // TODO: Rename parameter arguments, choose names that match

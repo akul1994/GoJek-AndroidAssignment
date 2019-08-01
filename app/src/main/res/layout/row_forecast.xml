@@ -7,7 +7,7 @@
         <variable name="model" type="gojek.assignment.com.gojek_androidassignment.models.ForecastDayModel"/>
 
     </data>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
                                              android:layout_width="match_parent"
                                              android:paddingLeft="16dp"
                                              android:paddingRight="16dp"
@@ -34,6 +34,6 @@
               android:id="@+id/textTemparature"
     />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
