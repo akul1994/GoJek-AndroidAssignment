@@ -4,6 +4,8 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.view.View
 import gojek.assignment.com.gojek_androidassignment.models.ApiResponse
 import gojek.assignment.com.gojek_androidassignment.models.WeatherResponseModel
 import gojek.assignment.com.gojek_androidassignment.repository.MainRepository
@@ -20,4 +22,12 @@ class MainWeatherViewModel(application : Application) : AndroidViewModel(applica
         responseModel = repository.weatherResponseModel
     }
 
+
+    inner class MyClickHandlers(internal var context: Context) {
+
+        fun onRetry(view :View)
+        {
+            repository.makeWeatherForecastRequest(5,"Bangalore")
+        }
+    }
 }
