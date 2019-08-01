@@ -1,5 +1,7 @@
 package gojek.assignment.com.gojek_androidassignment
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.databinding.DataBindingUtil.setContentView
@@ -20,6 +22,8 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.FrameLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import gojek.assignment.com.gojek_androidassignment.fragments.FragmentError
 
 
@@ -39,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         weatherViewModel.responseModel.observe(this, Observer<ApiResponse> {
             consumeResponse(it)
         })
+        checkAndAskPermission()
     }
 
     private fun consumeResponse(response: ApiResponse?) {
@@ -116,4 +121,36 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().remove(fragment).commit()
         }
     }
+
+    private val REQ_CODE_PERMISSIONS = 101
+
+    fun checkAndAskPermission()
+    {
+        if (ContextCompat.checkSelfPermission(
+                getApplication(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        )
+        {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQ_CODE_PERMISSIONS)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+           REQ_CODE_PERMISSIONS-> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                  weatherViewModel.fetchLocation()
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return
+            }
+        }
+    }
+
 }
