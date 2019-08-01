@@ -7,10 +7,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "gojek.assignment.com.gojek_androidassignment"
-        minSdkVersion 23
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

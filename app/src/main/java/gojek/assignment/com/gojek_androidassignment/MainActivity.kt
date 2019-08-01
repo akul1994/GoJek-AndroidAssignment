@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import gojek.assignment.com.gojek_androidassignment.fragments.WeatherInfoFragment
 import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
 import gojek.assignment.com.gojek_androidassignment.models.ApiResponse
+import gojek.assignment.com.gojek_androidassignment.repository.MainRepository
+import kotlinx.android.synthetic.main.activity_main.*
 import phonepe.interview.com.dunzo.utils.constants
 
 
@@ -21,27 +24,36 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       init()
+        init()
     }
 
-    private fun init()
-    {
+    private fun init() {
         weatherViewModel.responseModel.observe(this, Observer<ApiResponse> {
             consumeResponse(it)
         })
+        MainRepository.getInstance(this).makeWeatherForecastRequest(5, "Bangalore")
     }
 
-    private fun consumeResponse(response: ApiResponse?)
-    {
-        if(response==null)
+    private fun consumeResponse(response: ApiResponse?) {
+        if (response == null)
             return
-        when(response.status)
-        {
+        when (response.status) {
 
-            constants.Status.LOADING -> TODO()
-            constants.Status.SUCCESS -> TODO()
-            constants.Status.ERROR -> TODO()
-            constants.Status.COMPLETED -> TODO()
+            constants.Status.LOADING -> {
+            }
+            constants.Status.SUCCESS -> {
+                replaceFragmentWithAnimation(
+                    WeatherInfoFragment(),
+                    containerFrags.id,
+                    R.anim.enter_from_bottom,
+                    R.anim.exit_to_bottom
+                )
+                weatherViewModel.responseModel.value = ApiResponse(constants.Status.COMPLETED, response.weatherResponseModel)
+            }
+            constants.Status.ERROR -> {
+            }
+            constants.Status.COMPLETED -> {
+            }
         }
     }
 

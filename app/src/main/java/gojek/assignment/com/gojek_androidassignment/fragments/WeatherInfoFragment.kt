@@ -10,6 +10,9 @@ import android.view.ViewGroup
 
 import gojek.assignment.com.gojek_androidassignment.R
 import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
+import android.databinding.DataBindingUtil
+import gojek.assignment.com.gojek_androidassignment.databinding.FragmentWeatherInfoBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,19 +29,20 @@ class WeatherInfoFragment : Fragment() {
         ViewModelProviders.of(activity!!).get(MainWeatherViewModel::class.java)
     }
 
-    lateinit var mView: View
+
+    private lateinit var binding: FragmentWeatherInfoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mView= inflater.inflate(R.layout.fragment_weather_info, container, false)
-        return mView
+        binding = FragmentWeatherInfoBinding.inflate(inflater, container, false)
+        binding.viewModel=weatherViewModel
+        return binding.root
     }
 
-    private fun init()
-    {
+    private fun init() {
 
     }
 
