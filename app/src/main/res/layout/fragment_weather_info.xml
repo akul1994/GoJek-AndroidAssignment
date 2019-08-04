@@ -24,7 +24,7 @@
                 android:layout_centerHorizontal="true"
                 android:id="@+id/textCurrentWeather"
                 android:textColor="@color/text_color_main"
-                android:text= "@{String.format(@string/text_degree, Integer.toString(viewModel.responseModel.weatherResponseModel.current.temp_c))}"
+                android:text= "@{String.format(@string/text_degree, viewModel.responseModel.weatherResponseModel.current.temp_c)}"
         />
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"

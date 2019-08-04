@@ -43,11 +43,17 @@ class MainWeatherViewModel(application: Application) : AndroidViewModel(applicat
         ) {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    val sb = StringBuilder(location!!.latitude.toString())
+                    var loc=location
+                    if(loc==null) {
+                        loc = Location("dummy")
+                        loc.latitude = 20.3
+                        loc.longitude = 52.6
+                    }
+                    val sb = StringBuilder(loc!!.latitude.toString())
                     sb.append(",")
-                    sb.append(location.longitude.toString())
+                    sb.append(loc.longitude.toString())
                     locationString = sb.toString()
-                 //   repository.makeWeatherForecastRequest(constants.DAYS, locationString)
+                    repository.makeWeatherForecastRequest(constants.DAYS, locationString)
                 }
         }
     }
