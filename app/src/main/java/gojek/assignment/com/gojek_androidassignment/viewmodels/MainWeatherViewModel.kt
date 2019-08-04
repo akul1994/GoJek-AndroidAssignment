@@ -47,7 +47,7 @@ class MainWeatherViewModel(application: Application) : AndroidViewModel(applicat
                     sb.append(",")
                     sb.append(location.longitude.toString())
                     locationString = sb.toString()
-                    repository.makeWeatherForecastRequest(constants.DAYS, locationString)
+                 //   repository.makeWeatherForecastRequest(constants.DAYS, locationString)
                 }
         }
     }
