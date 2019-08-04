@@ -10,14 +10,12 @@ import androidx.test.rule.ActivityTestRule
 import gojek.assignment.com.gojek_androidassignment.fragments.FragmentError
 import org.junit.Rule
 import org.junit.Before
-import androidx.test.InstrumentationRegistry.getTargetContext
-import android.content.Intent
-import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.matcher.ViewMatchers.*
-import gojek.assignment.com.gojek_androidassignment.fragments.WeatherInfoFragment
-import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
+import junit.framework.Assert.assertTrue
 import org.hamcrest.Matchers.not
-import org.mockito.Mockito.mock
+import androidx.test.rule.GrantPermissionRule
+import gojek.assignment.com.gojek_androidassignment.RecyclerViewItemCountAssertion.withItemCount
+import phonepe.interview.com.dunzo.utils.constants
 
 
 /**
@@ -30,29 +28,23 @@ class MainActivityTest {
     @JvmField
     val mActivityRule = ActivityTestRule(MainActivity::class.java)
 
-    val viewModel = mock(MainWeatherViewModel::class.java)
 
+    @Rule
+    @JvmField
+    val grantPermissionRule: GrantPermissionRule =
+        GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION)
 
 
     @Before
     fun init() {
-//        mActivityRule.activity
-//            .supportFragmentManager.beginTransaction().replace()
-        //  mActivityRule.launchActivity(Intent())
-
     }
 
-
-    @Test
-    fun checkLoaderImage() {
-        onView(withId(R.id.imgLoading)).check(matches(isDisplayed()))
-    }
 
     @Test
     fun checkWeatherInfo() {
-
         onView(withId(R.id.textCurrentWeather)).check(matches(not(withText(""))))
         onView(withId(R.id.textCurrentCity)).check(matches(not(withText(""))))
+        onView(withId(R.id.listForecast)).check(withItemCount(constants.DAYS))
     }
 
     @Test
@@ -62,6 +54,8 @@ class MainActivityTest {
             .replace(R.id.containerFrags, fragment).commit()
         onView(withId(R.id.textError)).check(matches(withText(R.string.something_wrong)))
         onView(withId(R.id.buttonRetry)).check(matches(withText(R.string.retry)))
+        onView(withId(R.id.buttonRetry)).perform(click())
+        assertTrue(!fragment.isVisible)
     }
 
 }
