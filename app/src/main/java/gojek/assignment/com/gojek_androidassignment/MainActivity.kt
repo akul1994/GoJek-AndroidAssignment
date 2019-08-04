@@ -4,18 +4,15 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import android.text.TextUtils.replace
 import android.view.View
 import gojek.assignment.com.gojek_androidassignment.fragments.WeatherInfoFragment
 import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
 import gojek.assignment.com.gojek_androidassignment.models.ApiResponse
-import gojek.assignment.com.gojek_androidassignment.repository.MainRepository
 import kotlinx.android.synthetic.main.activity_main.*
 import phonepe.interview.com.dunzo.utils.constants
 import android.view.animation.LinearInterpolator
@@ -124,26 +121,28 @@ class MainActivity : AppCompatActivity() {
 
     private val REQ_CODE_PERMISSIONS = 101
 
-    fun checkAndAskPermission()
-    {
+    private fun checkAndAskPermission() {
         if (ContextCompat.checkSelfPermission(
-                getApplication(),
+                this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
-        )
-        {
-            ActivityCompat.requestPermissions(this,
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQ_CODE_PERMISSIONS)
+                REQ_CODE_PERMISSIONS
+            )
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
         when (requestCode) {
-           REQ_CODE_PERMISSIONS-> {
+            REQ_CODE_PERMISSIONS -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                  weatherViewModel.fetchLocation()
+                    weatherViewModel.fetchLocation()
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.

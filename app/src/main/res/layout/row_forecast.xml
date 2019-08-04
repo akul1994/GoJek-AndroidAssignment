@@ -5,7 +5,6 @@
 >
     <data>
         <variable name="model" type="gojek.assignment.com.gojek_androidassignment.models.ForecastDayModel"/>
-
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
                                              android:layout_width="match_parent"
@@ -21,7 +20,7 @@
               android:textSize="16sp"
               android:fontFamily="sans-serif"
               android:id="@+id/textDay"
-              android:text="@{model.date}"
+              app:dayText="@{model.date_epoch}"
     />
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -30,7 +29,7 @@
               android:textSize="16sp"
               android:fontFamily="sans-serif"
               app:layout_constraintRight_toRightOf="parent"
-              android:text="@{model.day.avgtemp_c}"
+              android:text= "@{String.format(@string/text_c, model.day.avgtemp_c)}"
               android:id="@+id/textTemparature"
     />
 
