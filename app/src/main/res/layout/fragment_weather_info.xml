@@ -24,7 +24,7 @@
                 android:layout_centerHorizontal="true"
                 android:id="@+id/textCurrentWeather"
                 android:textColor="@color/text_color_main"
-                android:text= "@{String.format(@string/text_degree, viewModel.responseModel.weatherResponseModel.current.temp_c)}"
+                android:text= "@{String.format(@string/text_degree, viewModel.weatherResponseModel.current.temp_c)}"
         />
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                   android:textColor="@color/text_color_sub"
                   android:textSize="36sp"
                   android:id="@+id/textCurrentCity"
-                  android:text="@{viewModel.responseModel.weatherResponseModel.location.name}"
+                  android:text="@{viewModel.weatherResponseModel.location.name}"
 
         />
 

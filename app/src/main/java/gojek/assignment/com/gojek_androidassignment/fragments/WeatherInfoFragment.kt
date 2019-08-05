@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import gojek.assignment.com.gojek_androidassignment.R
 import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import gojek.assignment.com.gojek_androidassignment.adapters.ForecastAdapter
 import gojek.assignment.com.gojek_androidassignment.databinding.FragmentWeatherInfoBinding
@@ -51,7 +49,7 @@ class WeatherInfoFragment : Fragment() {
         var list = binding.root.listForecast
         list.layoutManager = LinearLayoutManager(context!!)
         var adapter =
-            ForecastAdapter(weatherViewModel.responseModel.value!!.weatherResponseModel!!.forecast.forecastday)
+            ForecastAdapter(weatherViewModel.weatherResponseModel.value!!.forecast.forecastday)
         val dividerItemDecoration = DividerItemDecoration(
             list.getContext(),
             DividerItemDecoration.VERTICAL

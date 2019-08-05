@@ -3,20 +3,17 @@ package gojek.assignment.com.gojek_androidassignment.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.view.View
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
-import gojek.assignment.com.gojek_androidassignment.models.ApiResponse
+import gojek.assignment.com.gojek_androidassignment.models.ApiStatus
 import gojek.assignment.com.gojek_androidassignment.models.WeatherResponseModel
 import gojek.assignment.com.gojek_androidassignment.repository.MainRepository
 import phonepe.interview.com.dunzo.utils.constants
 import java.lang.StringBuilder
-import java.util.jar.Manifest
 
 /**
  * Created by Akul Aggarwal on 01/08/19.
@@ -24,14 +21,16 @@ import java.util.jar.Manifest
 class MainWeatherViewModel(application: Application) : AndroidViewModel(application) {
 
     var repository: MainRepository = MainRepository.getInstance(application)
-    var responseModel: MutableLiveData<ApiResponse>
+    var statusModel: MutableLiveData<ApiStatus>
+    var weatherResponseModel : MutableLiveData<WeatherResponseModel>
     var fusedLocationClient = LocationServices.getFusedLocationProviderClient(application)
     lateinit var locationString: String
 
     var visibility = false
 
     init {
-        responseModel = repository.weatherResponseModel
+        weatherResponseModel=repository.weatherResponseModel
+        statusModel = repository.apiStatusModel
         fetchLocation()
     }
 

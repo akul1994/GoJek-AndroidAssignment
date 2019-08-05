@@ -21,5 +21,10 @@ object constants
 
     const val DAYS=5
 
+    object ApiCodes
+    {
+        const val WEATHER_FORECAST=501
+    }
+
 }
 

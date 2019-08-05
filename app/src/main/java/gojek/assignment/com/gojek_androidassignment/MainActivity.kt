@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentTransaction
 import android.view.View
 import gojek.assignment.com.gojek_androidassignment.fragments.WeatherInfoFragment
 import gojek.assignment.com.gojek_androidassignment.viewmodels.MainWeatherViewModel
-import gojek.assignment.com.gojek_androidassignment.models.ApiResponse
+import gojek.assignment.com.gojek_androidassignment.models.ApiStatus
 import kotlinx.android.synthetic.main.activity_main.*
 import phonepe.interview.com.dunzo.utils.constants
 import android.view.animation.LinearInterpolator
@@ -37,16 +37,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        weatherViewModel.responseModel.observe(this, Observer<ApiResponse> {
+        weatherViewModel.statusModel.observe(this, Observer<ApiStatus> {
             consumeResponse(it)
         })
         checkAndAskPermission()
     }
 
-    private fun consumeResponse(response: ApiResponse?) {
-        if (response == null)
+    private fun consumeResponse(status: ApiStatus?) {
+        if (status == null)
             return
-        when (response.status) {
+        when (status.status) {
 
             constants.Status.LOADING -> {
                 clearAllFragments()
@@ -54,14 +54,16 @@ class MainActivity : AppCompatActivity() {
             }
             constants.Status.SUCCESS -> {
                 cancelLoader()
-                replaceFragmentWithAnimation(
-                    WeatherInfoFragment(),
-                    containerFrags,
-                    R.anim.enter_from_bottom,
-                    R.anim.exit_to_bottom
-                )
-                weatherViewModel.responseModel.value =
-                    ApiResponse(constants.Status.COMPLETED, response.weatherResponseModel)
+                if (status.apiCode == constants.ApiCodes.WEATHER_FORECAST) {
+                    replaceFragmentWithAnimation(
+                        WeatherInfoFragment(),
+                        containerFrags,
+                        R.anim.enter_from_bottom,
+                        R.anim.exit_to_bottom
+                    )
+                }
+                weatherViewModel.statusModel.value =
+                    ApiStatus(constants.Status.COMPLETED, status.apiCode)
             }
             constants.Status.ERROR -> {
                 cancelLoader()
@@ -151,7 +153,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
 }
