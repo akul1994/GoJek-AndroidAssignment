@@ -28,6 +28,7 @@ class MainWeatherViewModel(application: Application) : AndroidViewModel(applicat
     var fusedLocationClient = LocationServices.getFusedLocationProviderClient(application)
     lateinit var locationString: String
 
+    var visibility = false
 
     init {
         responseModel = repository.weatherResponseModel

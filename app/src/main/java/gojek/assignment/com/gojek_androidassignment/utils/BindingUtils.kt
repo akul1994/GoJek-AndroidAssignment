@@ -1,5 +1,9 @@
 package gojek.assignment.com.gojek_androidassignment.utils
 
+import android.os.Build
+import android.transition.TransitionManager
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import java.text.SimpleDateFormat
@@ -12,10 +16,12 @@ import java.util.*
 object BindingUtils {
 
     @JvmStatic
-    @BindingAdapter("app:format", "app:argId")
-    fun setFormattedText(textView: TextView, format: String, argId: Int) {
-        if (argId == 0) return
-        textView.text = String.format(format, textView.resources.getString(argId))
+    @BindingAdapter("animatedVisibility")
+    fun setAnimatedVisibility(target: View, isVisible: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            TransitionManager.beginDelayedTransition(target.rootView as ViewGroup)
+        }
+        target.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
     @JvmStatic

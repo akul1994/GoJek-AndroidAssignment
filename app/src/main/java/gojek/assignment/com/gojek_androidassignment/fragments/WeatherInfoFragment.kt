@@ -58,6 +58,7 @@ class WeatherInfoFragment : Fragment() {
         )
         list.addItemDecoration(dividerItemDecoration)
         list.adapter = adapter
+        weatherViewModel.visibility=true
     }
 
 

@@ -49,6 +49,7 @@
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:id="@+id/listForecast"
+                    app:animatedVisibility="@{viewModel.visibility}"
                     android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
